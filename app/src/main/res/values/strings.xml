@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">HidroponikStore</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="email">oke@gmail.com</string>
+    <string name="basnin">AndyAdr</string>
+    <string name="detailproduk">Detail Produk</string>
+    <string name="title_tab1">Keranjang</string>
+    <string name="title_tab2">Beli Sekarang</string>
+    <string name="nama_produk">Nama Produk</string>
+    <string name="harga">Harga</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="ratingnya">2</string>
+    <string name="tgl_upload">tgl_upload</string>
+    <string name="jenis">Jenis</string>
+    <string name="Deskripsi">Deskripsi</string>
+    <string name="sold">0</string>
+    <string name="menu_produk">Produk</string>
+    <string name="menu_keranjang">Keranjang</string>
+    <string name="menu_pembelian">Pembelian</string>
+    <string name="menu_favorite">Favorite</string>
+    <string name="menu_login">Login</string>
+    <string name="menu_daftar">Sign up</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tgl_lahir"> Tanngal Lahir</string>
+    <string name="JK">Jenis Kelamin</string>
+    <string name="jk_prompt">Choose a gender</string>
+    <string name="menu_logout">Logout</string>
+    <string name="upload_image">UPLOAD IMAGE</string>
+    <string name="read_file">This app needs access to your file storage so that it can read photos.</string>
+    <string name="menu_uploadfoto">Upload Foto</string>
+    <string name="menu_fotoprofil">Foto Profil</string>
+    <string name="Jumlah_Pesanan">Jumlah Pesanan</string>
+
+    <string-array name="jk">
+        <item>Laki-laki</item>
+        <item>Perempuan</item>
+    </string-array>
+</resources>

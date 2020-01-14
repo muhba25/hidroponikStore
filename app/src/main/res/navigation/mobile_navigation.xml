@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_produk">
+
+    <fragment
+        android:id="@+id/nav_produk"
+        android:name="com.andyadr.apps.hidroponikstore.ProdukFragment"
+        android:label="@string/menu_produk"
+        tools:layout="@layout/fragment_produk" />
+
+    <activity
+        android:id="@+id/nav_keranjang"
+        android:name="com.andyadr.apps.hidroponikstore.KeranjangActivity"
+        android:label="@string/menu_keranjang"
+        tools:layout="@layout/activity_keranjang" />
+
+    <fragment
+        android:id="@+id/nav_pembelian"
+        android:name="com.andyadr.apps.hidroponikstore.PembelianFragment"
+        android:label="@string/menu_pembelian"
+        tools:layout="@layout/fragment_pembelian" />
+
+    <activity
+        android:id="@+id/nav_login"
+        android:name="com.andyadr.apps.hidroponikstore.Auth.LoginActivity"
+        android:label="@string/menu_login"
+        tools:layout="@layout/activity_login" />
+
+    <activity
+        android:id="@+id/nav_daftar"
+        android:name="com.andyadr.apps.hidroponikstore.Auth.DaftarActivity"
+        android:label="@string/menu_daftar"
+        tools:layout="@layout/activity_daftar" />
+
+    <activity
+        android:id="@+id/nav_uploadfoto"
+        android:name="com.andyadr.apps.hidroponikstore.Auth.UploadFotoActivity"
+        android:label="@string/menu_uploadfoto"
+        tools:layout="@layout/activity_upload_foto" />
+
+    <activity
+        android:id="@+id/nav_fotoprofil"
+        android:name="com.andyadr.apps.hidroponikstore.Auth.FotoProfilActivity"
+        android:label="@string/menu_fotoprofil"
+        tools:layout="@layout/activity_foto_profil" />
+
+
+</navigation>
