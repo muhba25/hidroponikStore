@@ -7,7 +7,7 @@
     tools:context=".KeranjangActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvListproduk"
+        android:id="@+id/rvListprodukkeranjang"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:clickable="true"

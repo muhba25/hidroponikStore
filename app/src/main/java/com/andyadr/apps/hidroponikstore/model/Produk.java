@@ -1,6 +1,8 @@
 package com.andyadr.apps.hidroponikstore.model;
 
 import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -9,12 +11,16 @@ import com.google.gson.annotations.SerializedName;
 
 import static android.provider.BlockedNumberContract.BlockedNumbers.COLUMN_ID;
 
+@Entity(tableName = "produk", indices = @Index(value = {"kode_produk"}, unique = true))
 public class Produk implements Parcelable {
+
+    @PrimaryKey(autoGenerate = true)
+    private int uid;
 
     @SerializedName("kode_produk")
     private String kode_produk;
 
-    @SerializedName(value = "nama_produk")
+    @SerializedName("nama_produk")
     private String nama_produk;
 
     @SerializedName(value = "deskripsi")
@@ -37,6 +43,41 @@ public class Produk implements Parcelable {
 
     @SerializedName("foto")
     private String foto;
+
+
+    @SerializedName("total_bayar")
+    private int total_bayar;
+
+    @SerializedName("MemberId")
+    private String MemberId;
+
+    @SerializedName("payed")
+    private String payed;
+
+    @SerializedName("tgl_belanja")
+    private String tgl_belanja;
+
+    @SerializedName("kemas")
+    private String kemas;
+
+    @SerializedName("kirim")
+    private String kirim;
+
+    @SerializedName("cancel")
+    private String cancel;
+
+    @SerializedName("finish")
+    private String finish;
+
+
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
 
     public String getKode_produk() {
         return kode_produk;
@@ -110,6 +151,71 @@ public class Produk implements Parcelable {
         this.foto = foto;
     }
 
+    public int getTotal_bayar() {
+        return total_bayar;
+    }
+
+    public void setTotal_bayar(int total_bayar) {
+        this.total_bayar = total_bayar;
+    }
+
+
+    public String getMemberId() {
+        return MemberId;
+    }
+
+    public void setMemberId(String memberId) {
+        MemberId = memberId;
+    }
+
+    public String getPayed() {
+        return payed;
+    }
+
+    public void setPayed(String payed) {
+        this.payed = payed;
+    }
+
+    public String getTgl_belanja() {
+        return tgl_belanja;
+    }
+
+    public void setTgl_belanja(String tgl_belanja) {
+        this.tgl_belanja = tgl_belanja;
+    }
+
+    public String getKemas() {
+        return kemas;
+    }
+
+    public void setKemas(String kemas) {
+        this.kemas = kemas;
+    }
+
+    public String getKirim() {
+        return kirim;
+    }
+
+    public void setKirim(String kirim) {
+        this.kirim = kirim;
+    }
+
+    public String getCancel() {
+        return cancel;
+    }
+
+    public void setCancel(String cancel) {
+        this.cancel = cancel;
+    }
+
+    public String getFinish() {
+        return finish;
+    }
+
+    public void setFinish(String finish) {
+        this.finish = finish;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -117,6 +223,7 @@ public class Produk implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.uid);
         dest.writeString(this.kode_produk);
         dest.writeString(this.nama_produk);
         dest.writeString(this.deskripsi);
@@ -126,12 +233,21 @@ public class Produk implements Parcelable {
         dest.writeString(this.jenis);
         dest.writeString(this.tgl_upload);
         dest.writeString(this.foto);
+        dest.writeInt(this.total_bayar);
+        dest.writeString(this.MemberId);
+        dest.writeString(this.payed);
+        dest.writeString(this.tgl_belanja);
+        dest.writeString(this.kemas);
+        dest.writeString(this.kirim);
+        dest.writeString(this.cancel);
+        dest.writeString(this.finish);
     }
 
     public Produk() {
     }
 
     protected Produk(Parcel in) {
+        this.uid = in.readInt();
         this.kode_produk = in.readString();
         this.nama_produk = in.readString();
         this.deskripsi = in.readString();
@@ -141,6 +257,14 @@ public class Produk implements Parcelable {
         this.jenis = in.readString();
         this.tgl_upload = in.readString();
         this.foto = in.readString();
+        this.total_bayar = in.readInt();
+        this.MemberId = in.readString();
+        this.payed = in.readString();
+        this.tgl_belanja = in.readString();
+        this.kemas = in.readString();
+        this.kirim = in.readString();
+        this.cancel = in.readString();
+        this.finish = in.readString();
     }
 
     public static final Creator<Produk> CREATOR = new Creator<Produk>() {

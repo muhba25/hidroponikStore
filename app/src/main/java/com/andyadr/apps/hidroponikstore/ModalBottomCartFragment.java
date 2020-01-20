@@ -45,10 +45,10 @@ public class ModalBottomCartFragment extends BottomSheetDialogFragment {
     public static final String EXTRA_FOTO = "extrlas";
     public static final String EXTRA_MEMBER = "extnras";
     static final String TAG = ProdukFragment.class.getSimpleName();
+    private ApiEndpoints apiService = ApiClient.getClient().create(ApiEndpoints.class);
     private Button btntambah,btnkurang,btnkeranjang;
     private String kodeproduk,member;
     private EditText etjumlah;
-    private ApiEndpoints apiService = ApiClient.getClient().create(ApiEndpoints.class);
 
     public ModalBottomCartFragment() {
         // Required empty public constructor

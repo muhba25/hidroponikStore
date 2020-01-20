@@ -21,6 +21,10 @@
             android:icon="@drawable/ic_favorite_black_24dp"
             android:title="@string/menu_favorite" />
         <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/ic_history_black_24dp"
+            android:title="@string/menu_history" />
+        <item
             android:id="@+id/nav_uploadfoto"
             android:icon="@drawable/uploadfoto_icon"
             android:title="@string/menu_uploadfoto"

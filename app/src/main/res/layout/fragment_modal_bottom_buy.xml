@@ -127,6 +127,7 @@
             android:clickable="false"
             android:focusable="false"
             android:cursorVisible="false"
+            android:background="@null"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/buttonincrease"
             app:layout_constraintHorizontal_bias="0.583"

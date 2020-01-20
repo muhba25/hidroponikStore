@@ -61,7 +61,7 @@ public class FotoProfilActivity extends AppCompatActivity {
         btnUpload = findViewById(R.id.upload);
 //        btnMulUpload = findViewById(R.id.uploadMultiple);
         btnPickImage = findViewById(R.id.pick_img);
-        btnPickVideo = findViewById(R.id.pick_vdo);
+//        btnPickVideo = findViewById(R.id.pick_vdo);
         imgView = findViewById(R.id.preview);
         str1 = findViewById(R.id.filename1);
 //        str2 = findViewById(R.id.filename2);
@@ -136,14 +136,14 @@ public class FotoProfilActivity extends AppCompatActivity {
         });
 
         // Video must be low in Memory or need to be compressed before uploading...
-        btnPickVideo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(galleryIntent, 1);
-            }
-        });
+//        btnPickVideo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+//                        android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
+//                startActivityForResult(galleryIntent, 1);
+//            }
+//        });
 
     }
 

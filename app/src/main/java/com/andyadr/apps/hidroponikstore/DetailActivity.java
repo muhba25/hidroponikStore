@@ -1,6 +1,9 @@
 package com.andyadr.apps.hidroponikstore;
 
+import android.appwidget.AppWidgetManager;
+import android.arch.persistence.room.Room;
 import android.content.Intent;
+import android.database.sqlite.SQLiteConstraintException;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.BottomSheetDialog;
@@ -11,13 +14,17 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.andyadr.apps.hidroponikstore.Auth.SharePrefManagerLogin;
+import com.andyadr.apps.hidroponikstore.db.DatabaseProduk;
+import com.andyadr.apps.hidroponikstore.db.ProdukDao;
 import com.andyadr.apps.hidroponikstore.model.Produk;
 import com.bumptech.glide.Glide;
 
@@ -57,6 +64,7 @@ public class DetailActivity extends AppCompatActivity {
     SharePrefManagerLogin sesslogin;
     private String title,kode,foto,member;
     private Integer harga;
+    private ProdukDao produkDao;
 
 
 
@@ -88,6 +96,11 @@ public class DetailActivity extends AppCompatActivity {
                 ContextCompat.getColor(this, R.color.white));
 //        initToolbar();
         showDetails(produk);
+
+        produkDao = Room.databaseBuilder(this, DatabaseProduk.class, "db_produk")
+                .allowMainThreadQueries()
+                .build()
+                .getProdukDAO();
 
 
     }
@@ -195,6 +208,45 @@ public class DetailActivity extends AppCompatActivity {
         Glide.with(DetailActivity.this)
                 .load(url_image)
                 .into(iv_foto2);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.favorit_menu, menu);
+        if (produkDao.getProdukByNama(produk.getNama_produk()) > 0) {
+            setFavoriteSelected(menu.getItem(0));
+        }
+        return true;
+    }
+
+    private void setFavoriteSelected(MenuItem item) {
+        item.setIcon(R.drawable.baseline_favorite_24);
+        item.setEnabled(false);
+    }
+
+    private void markAsFavorite() {
+        produkDao.insert(produk);
+        setResult(RESULT_OK);
+        Intent brIntent = new Intent(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        sendBroadcast(brIntent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                break;
+            case R.id.fav_btn:
+                try {
+                    markAsFavorite();
+                    setFavoriteSelected(item);
+                    Toast.makeText(this, "Berhasil Menambahkan ke Favorite", Toast.LENGTH_SHORT).show();
+                } catch (SQLiteConstraintException e) {
+                    Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                }
+        }
+        return true;
     }
 
 }

@@ -10,6 +10,11 @@
         android:name="com.andyadr.apps.hidroponikstore.ProdukFragment"
         android:label="@string/menu_produk"
         tools:layout="@layout/fragment_produk" />
+    <fragment
+        android:id="@+id/nav_favorite"
+        android:name="com.andyadr.apps.hidroponikstore.FavoriteFragment"
+        android:label="@string/menu_favorite"
+        tools:layout="@layout/fragment_favorite" />
 
     <activity
         android:id="@+id/nav_keranjang"
@@ -17,11 +22,11 @@
         android:label="@string/menu_keranjang"
         tools:layout="@layout/activity_keranjang" />
 
-    <fragment
+    <activity
         android:id="@+id/nav_pembelian"
-        android:name="com.andyadr.apps.hidroponikstore.PembelianFragment"
+        android:name="com.andyadr.apps.hidroponikstore.PembelianActivity"
         android:label="@string/menu_pembelian"
-        tools:layout="@layout/fragment_pembelian" />
+        tools:layout="@layout/activity_pembelian" />
 
     <activity
         android:id="@+id/nav_login"
@@ -46,6 +51,12 @@
         android:name="com.andyadr.apps.hidroponikstore.Auth.FotoProfilActivity"
         android:label="@string/menu_fotoprofil"
         tools:layout="@layout/activity_foto_profil" />
+
+    <fragment
+        android:id="@+id/nav_history"
+        android:name="com.andyadr.apps.hidroponikstore.HistoryFragment"
+        android:label="@string/menu_history"
+        tools:layout="@layout/fragment_history" />
 
 
 </navigation>

@@ -65,4 +65,18 @@ public interface ApiEndpoints {
 	@POST("keranjangdel")
 	Call<ResponsePostPutDelKeranjang> deleteKeranjang(@Field("member") String member,
 													@Field("kodeproduk") String kode);
+
+	//transaksi_pay
+	@FormUrlEncoded
+	@POST("checkout")
+	Call<ResponsePostPutDelKeranjang> postPay(@Field("memberc") String member,
+													  @Field("kodeprodukc") String kode, @Field("jumlahc") String jumlah);
+
+	//history
+	@GET("buyhistory")
+	Call<ResponseHistory> getHistory(@Query("member") String member);
+
+	//Pembelian
+	@GET("pembelian")
+	Call<ResponsePembelian> getPembelian(@Query("memberi") String member);
 }

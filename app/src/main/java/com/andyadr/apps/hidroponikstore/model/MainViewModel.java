@@ -11,7 +11,9 @@ import android.widget.Toast;
 import com.andyadr.apps.hidroponikstore.API.ApiClient;
 import com.andyadr.apps.hidroponikstore.API.ApiEndpoints;
 import com.andyadr.apps.hidroponikstore.API.ResponseGetUser;
+import com.andyadr.apps.hidroponikstore.API.ResponseHistory;
 import com.andyadr.apps.hidroponikstore.API.ResponseKeranjang;
+import com.andyadr.apps.hidroponikstore.API.ResponsePembelian;
 import com.andyadr.apps.hidroponikstore.API.ResponsePostPutDelUser;
 import com.andyadr.apps.hidroponikstore.API.ResponseProduk;
 import com.andyadr.apps.hidroponikstore.Auth.DaftarActivity;
@@ -71,12 +73,52 @@ public class MainViewModel extends ViewModel {
 		});
 	}
 
+	public void setFavProduk(ArrayList<Produk> produks) {
+		produkList.postValue(produks);
+	}
 
-//
-//	public void setFavMovie(ArrayList<Movie> movies) {
-//		movieList.postValue(movies);
-//	}
-//
+	public void setHistory(String kodemember) {
+		Call<ResponseHistory> Produkcall = apiService.getHistory(kodemember);
+		Produkcall.enqueue(new Callback<ResponseHistory>() {
+			@Override
+			public void onResponse(Call<ResponseHistory> call, Response<ResponseHistory> response) {
+
+				try {
+					ArrayList<Produk> produk = response.body().getMproduk();
+					produkList.postValue(produk);
+				} catch (Exception e) {
+					Log.d(MainActivity.class.getSimpleName(), e.getLocalizedMessage());
+				}
+			}
+
+			@Override
+			public void onFailure(Call<ResponseHistory> call, Throwable t) {
+				Log.d(MainActivity.class.getSimpleName(), t.getLocalizedMessage());
+			}
+		});
+	}
+
+	public void setPembelian(String kodemember) {
+		Call<ResponsePembelian> Produkcall = apiService.getPembelian(kodemember);
+		Produkcall.enqueue(new Callback<ResponsePembelian>() {
+			@Override
+			public void onResponse(Call<ResponsePembelian> call, Response<ResponsePembelian> response) {
+
+				try {
+					ArrayList<Produk> produk = response.body().getMpembelian();
+					produkList.postValue(produk);
+				} catch (Exception e) {
+					Log.d(MainActivity.class.getSimpleName(), e.getLocalizedMessage());
+				}
+			}
+
+			@Override
+			public void onFailure(Call<ResponsePembelian> call, Throwable t) {
+				Log.d(MainActivity.class.getSimpleName(), t.getLocalizedMessage());
+			}
+		});
+	}
+
 //	public void searchMovie(String query) {
 //		Call<ResponseMovie> call = apiService.searchMovies(query);
 //		call.enqueue(new Callback<ResponseMovie>() {

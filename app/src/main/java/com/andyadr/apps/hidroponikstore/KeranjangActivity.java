@@ -62,7 +62,7 @@ public class KeranjangActivity extends AppCompatActivity {
         etkodeproduk = findViewById(R.id.kodeproduk_keranjang);
         sesslogin = new SharePrefManagerLogin(this);
         pr_adapter = new KeranjangAdapter(this);
-        RecyclerView recyclerView = findViewById(R.id.rvListproduk);
+        RecyclerView recyclerView = findViewById(R.id.rvListprodukkeranjang);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(pr_adapter);
 

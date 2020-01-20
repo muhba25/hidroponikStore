@@ -43,6 +43,13 @@
     <string name="menu_uploadfoto">Upload Foto</string>
     <string name="menu_fotoprofil">Foto Profil</string>
     <string name="Jumlah_Pesanan">Jumlah Pesanan</string>
+    <string name="menu_history">History Pembelian</string>
+    <string name="tab_Belum_Bayar">Belum Bayar</string>
+    <string name="tab_dikemas">Dikemas</string>
+    <string name="tab_dikirim">Dikirim</string>
+    <string name="tab_selesai">Selesai</string>
+    <string name="tab_dibatalkan">Dibatalkan</string>
+    <string name="favorite">favorite</string>
 
     <string-array name="jk">
         <item>Laki-laki</item>

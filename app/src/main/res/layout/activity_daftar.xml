@@ -94,6 +94,7 @@
                     android:clickable="false"
                     android:focusable="false"
                     android:cursorVisible="false"
+                    android:background="@null"
                     android:hint="Tgl Lahir (YYYY-mm-dd)"
                     android:inputType="date" />
             </LinearLayout>

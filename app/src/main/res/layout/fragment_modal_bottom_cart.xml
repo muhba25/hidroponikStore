@@ -126,6 +126,7 @@
             android:clickable="false"
             android:focusable="false"
             android:cursorVisible="false"
+            android:background="@null"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/buttonincrease"

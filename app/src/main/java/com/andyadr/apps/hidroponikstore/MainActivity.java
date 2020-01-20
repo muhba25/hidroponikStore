@@ -1,6 +1,5 @@
 package com.andyadr.apps.hidroponikstore;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -34,7 +33,6 @@ import com.andyadr.apps.hidroponikstore.Auth.SharePrefManagerLogin;
 import com.andyadr.apps.hidroponikstore.Auth.UploadFotoActivity;
 import com.bumptech.glide.Glide;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -289,32 +287,45 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             Intent keran = new Intent(MainActivity.this, KeranjangActivity.class);
             startActivity(keran);
         } else if (id == R.id.nav_pembelian) {
-            title = "Pembelian";
-            fragment = new KeranjangFragment();
-            bundle.putString(PembelianFragment.EXTRAS, title);
-            fragment.setArguments(bundle);
-        } else if (id == R.id.nav_login) {
-            Intent login = new Intent(MainActivity.this, LoginActivity.class);
+            Intent login = new Intent(MainActivity.this, PembelianActivity.class);
             startActivity(login);
+        } else if (id == R.id.nav_favorite) {
+
+            title = "Favorite";
+            fragment = new FavoriteFragment();
+            bundle.putString(ProdukFragment.EXTRAS, title);
+            fragment.setArguments(bundle);
+
+        }   else if (id == R.id.nav_history) {
+
+            title = "History Belanja";
+            fragment = new HistoryFragment();
+            bundle.putString(HistoryFragment.EXTRAS, title);
+            fragment.setArguments(bundle);
+
+        }  else if (id == R.id.nav_fotoprofil) {
+            Intent fp = new Intent(MainActivity.this, FotoProfilActivity.class);
+            startActivity(fp);
+
         } else if (id == R.id.nav_logout) {
             sesslogin.clearLoggedInUser(this);
             Toast.makeText(MainActivity.this, "Berhasil Logout", Toast.LENGTH_LONG).show();
             Intent i = new Intent(MainActivity.this, MainActivity.class);
             finish();
             startActivity(i);
+        }  else if (id == R.id.nav_login) {
+            Intent login = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(login);
         } else if (id == R.id.nav_daftar) {
             Intent daftar = new Intent(MainActivity.this, DaftarActivity.class);
             startActivity(daftar);
 
-        } else if (id == R.id.nav_uploadfoto) {
-            Intent upload = new Intent(MainActivity.this, UploadFotoActivity.class);
-            startActivity(upload);
-
-        } else if (id == R.id.nav_fotoprofil) {
-            Intent fp = new Intent(MainActivity.this, FotoProfilActivity.class);
-            startActivity(fp);
-
         }
+//        else if (id == R.id.nav_uploadfoto) {
+//            Intent upload = new Intent(MainActivity.this, UploadFotoActivity.class);
+//            startActivity(upload);
+//
+//        }
 
         if (fragment != null) {
             getSupportFragmentManager()

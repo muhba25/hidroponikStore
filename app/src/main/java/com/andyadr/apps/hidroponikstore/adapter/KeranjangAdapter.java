@@ -4,7 +4,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -22,9 +24,11 @@ import com.andyadr.apps.hidroponikstore.API.ApiEndpoints;
 import com.andyadr.apps.hidroponikstore.API.ResponsePostPutDelKeranjang;
 import com.andyadr.apps.hidroponikstore.Auth.LoginActivity;
 import com.andyadr.apps.hidroponikstore.BuildConfig;
+import com.andyadr.apps.hidroponikstore.CheckoutFragment;
 import com.andyadr.apps.hidroponikstore.DetailActivity;
 import com.andyadr.apps.hidroponikstore.KeranjangActivity;
 import com.andyadr.apps.hidroponikstore.MainActivity;
+import com.andyadr.apps.hidroponikstore.ModalBottomCartFragment;
 import com.andyadr.apps.hidroponikstore.PembelianActivity;
 import com.andyadr.apps.hidroponikstore.R;
 import com.andyadr.apps.hidroponikstore.model.Keranjang;
@@ -81,13 +85,11 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.Kera
         TextView tv_harga;
         @BindView(R.id.kodemember_keranjang)
         TextView tv_member;
-        @BindView(R.id.jumlah_keranjang)
-        EditText et_jumlah;
         @BindView(R.id.foto_keranjang)
         ImageView iv_foto;
 
-        private Button btntambah,btnkurang,btncheckout;
-        private EditText etjumlah,etkodeproduk,etkodemember;
+        private Button btntambah,btnkurang,btncheckouts;
+        private EditText etjumlah,etkodeproduk,etkodemember,etjumlahker;
         private String ke,kp;
         private ApiEndpoints apiService = ApiClient.getClient().create(ApiEndpoints.class);
         ProgressDialog progressDialog;
@@ -100,8 +102,9 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.Kera
             itemView.setOnClickListener(this);
             btntambah = itemView.findViewById(R.id.buttonincrease_keranjang);
             btnkurang = itemView.findViewById(R.id.buttondecrease_keranjang);
-            btncheckout = itemView.findViewById(R.id.btncheckout);
+            btncheckouts = itemView.findViewById(R.id.btncheckout);
             etjumlah = itemView.findViewById(R.id.jumlah_keranjang);
+            etjumlahker = itemView.findViewById(R.id.jumlah_keranjang);
             etkodemember = itemView.findViewById(R.id.kodemember_keranjang);
             etkodeproduk = itemView.findViewById(R.id.kodeproduk_keranjang);
 
@@ -182,9 +185,11 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.Kera
                 }
             });
 
+
+
         }
 
-        public void bind(Keranjang pecahkeranjang) {
+        public void bind(final Keranjang pecahkeranjang) {
             Glide.with(itemView.getContext())
                     .load( BuildConfig.URL_IMG + pecahkeranjang.getFoto_keranjang())
                     .apply(new RequestOptions())
@@ -205,9 +210,33 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.Kera
             String x = kursIndonesia.format(harga);
 
             tv_harga.setText(x);
-            et_jumlah.setText(pecahkeranjang.getJumlah_keranjang());
+            etjumlah.setText(pecahkeranjang.getJumlah_keranjang());
             tv_member.setText(pecahkeranjang.getMemberid_keranjang());
 
+            btncheckouts.setOnClickListener(new View.OnClickListener()
+            {
+                Bundle bundle = new Bundle();
+                @Override
+                public void onClick(View v) {
+                    String Namaproduk = pecahkeranjang.getNama_produk_keranjang();
+                    Integer Hargaproduk = pecahkeranjang.getHarga_keranjang();
+                    String Kodeproduk = pecahkeranjang.getKode_produk_keranjang();
+                    String Fotoproduk = pecahkeranjang.getFoto_keranjang();
+                    String Memberproduk = pecahkeranjang.getMemberid_keranjang();
+                    String Jumlahproduk = etjumlahker.getText().toString().trim();;
+                    CheckoutFragment checkoutFragment = new CheckoutFragment();
+                    bundle.putString(CheckoutFragment.EXTRA_TITLE, Namaproduk);
+                    bundle.putString(CheckoutFragment.EXTRA_KODE, Kodeproduk);
+                    bundle.putString(CheckoutFragment.EXTRA_FOTO, Fotoproduk);
+                    bundle.putString(CheckoutFragment.EXTRA_MEMBER, Memberproduk);
+                    bundle.putString(CheckoutFragment.EXTRA_JUMLAH, Jumlahproduk);
+                    bundle.putInt(CheckoutFragment.EXTRA_HARGA, Hargaproduk);
+
+                    FragmentManager fm = ((KeranjangActivity) context).getSupportFragmentManager();
+                    checkoutFragment.setArguments(bundle);
+                    checkoutFragment.show(fm, checkoutFragment.getTag());
+                }
+            });
 
         }
 
